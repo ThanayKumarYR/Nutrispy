@@ -1,9 +1,13 @@
-Clone or download the repository: Nutrispy.
+## Clone or download the repository: Nutrispy.
 
-Get into project by command: cd Nutrispy.
+## Get into project by command: 
 
-Run command:\n
-	debug mode on: python app.py\n
-	debug mode off: Flask run
+```bash
+cd Nutrispy
+```
+
+# Run command:
+## 		debug mode on: ```bash python app.py\n ```
+## 		debug mode off:```bash Flask run ```
 
 
