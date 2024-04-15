@@ -3,6 +3,7 @@ import "./App.css";
 import React,{ useState } from 'react';
 import { Route, Routes, Link } from 'react-router-dom';
 import{Home,About,Services,Products,Contact} from "./pages"
+import { ScrollUpButton } from "./components";
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,6 +44,7 @@ function App() {
           <Route path="/products" exact element={<Products />}/>
           <Route path="/contact" exact element={<Contact/>}/>
         </Routes>
+        <ScrollUpButton />
       </div>
   );
 }

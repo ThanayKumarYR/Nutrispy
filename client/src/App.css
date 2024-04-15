@@ -79,6 +79,7 @@ body::-webkit-scrollbar {
 @media (max-width: 768px) {
   .navbar{
     padding: 10px 20px;
+    justify-content: end;
   }
   .navbar-nav {
     
@@ -90,7 +91,6 @@ body::-webkit-scrollbar {
     background-color: #333;
     display: none; /* Hide by default */
     align-items: center;
-    
   }
 
   .navbar-nav.open {
