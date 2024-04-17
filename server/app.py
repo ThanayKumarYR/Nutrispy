@@ -1,12 +1,28 @@
 #basic template of flask to get started.
 
-from flask import Flask,render_template
+from flask import Flask,jsonify,request 
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
+from werkzeug.exceptions import NotFound
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/',methods=['GET','POST'])
+
+@app.route('/contact',methods=['GET','POST'])
 def index():
-    return render_template("index.html")
+    if(request.method == 'POST'): 
+        name = request.json["name"]
+        email = request.json["email"]
+        number = request.json["number"]
+        company = request.json["company"]
+        message = request.json["message"]
+        print(f"{name} working with {company if company else 'No Comapany'} has email {email} and number {number} with message: \n'{message}.'")
+        return str(f"{name} working with {company if company else 'No Comapany'} has email {email} and number {number} with message: \n'{message}.'")
+hostedApp = Flask(__name__)
+
+hostedApp.wsgi_app = DispatcherMiddleware(NotFound,{"/api/v1":app})
 
 if __name__ == "__main__":
-    app.run(port=5000,host="localhost",debug=True)
+    hostedApp.run(port=30000,host="0.0.0.0",debug=True)
+
