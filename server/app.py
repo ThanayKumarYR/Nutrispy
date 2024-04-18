@@ -6,7 +6,7 @@ from werkzeug.exceptions import NotFound
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app,resources={r"/*":{"origins":"https://thanaykumaryr.github.io/Nutrispy_frontend/*"}})
 
 
 @app.route('/contact',methods=['GET','POST'])
