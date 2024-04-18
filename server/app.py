@@ -1,16 +1,19 @@
 #basic template of flask to get started.
 
-from flask import Flask,jsonify,request 
+from flask import Flask,request 
 from werkzeug.middleware.dispatcher import DispatcherMiddleware
 from werkzeug.exceptions import NotFound
 from flask_cors import CORS
 
-app = Flask(__name__)
-CORS(app,resources={r"/*":{"origins":"https://thanaykumaryr.github.io/Nutrispy_frontend/*"}})
+app1 = Flask(__name__)
+CORS(app1,resources={r"/*":{"origins":"https://thanaykumaryr.github.io/*"}})
 
-
-@app.route('/contact',methods=['GET','POST'])
+@app1.route('/',methods=['GET'])
 def index():
+    return "<h1>Welcome to Nutrispy Server</h1>"
+
+@app1.route('/contact',methods=['GET','POST'])
+def contact():
     if(request.method == 'POST'): 
         name = request.json["name"]
         email = request.json["email"]
@@ -19,10 +22,8 @@ def index():
         message = request.json["message"]
         print(f"{name} working with {company if company else 'No Comapany'} has email {email} and number {number} with message: \n'{message}.'")
         return str(f"{name} working with {company if company else 'No Comapany'} has email {email} and number {number} with message: \n'{message}.'")
-hostedApp = Flask(__name__)
 
-hostedApp.wsgi_app = DispatcherMiddleware(NotFound,{"/api/v1":app})
+app = Flask(__name__)
 
-if __name__ == "__main__":
-    hostedApp.run(port=30000,host="0.0.0.0",debug=True)
+app.wsgi_app = DispatcherMiddleware(NotFound,{"/api/v1":app1})
 
